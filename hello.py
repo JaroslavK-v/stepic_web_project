@@ -6,6 +6,6 @@ user = "nobody"
 
 def application(env, start_response):
     start_response('200 OK', [('Content-Type', 'text/plain')])
-    li = env[QUERY_STRING].split("&")
-    resp = [el+"\r\n" for el in string]
+    li = env["QUERY_STRING"].split("&")
+    resp = [el+"\r\n" for el in li]
     return resp
