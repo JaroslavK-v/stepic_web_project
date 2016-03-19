@@ -1,3 +1,6 @@
 mysql -u root
-show databases
-create database ask character set = utf8;
+mysql show databases;
+mysql -uroot -ecreate database ask character set = utf8;
+mysql -uroot -e "CREATE USER 'ask'@'localhost' IDENTIFIED BY 'password';"
+mysql -uroot -e "GRANT ALL PRIVILEGES ON * . * TO 'ask'@'localhost';"
+mysql -uroot -e "FLUSH PRIVILEGES;"
