@@ -9,7 +9,7 @@ class Question(models.Model):
     added_at = models.DateTimeField(blank=True)
     rating = models.IntegerField(4)
     author = models.ForeignKey(User)
-    likes = models.ManyToManyField(User)
+    likes = models.ManyToManyField(User, related_name='likes_set')
 
     def __unicode__(self):
         return self.title
@@ -21,6 +21,9 @@ class Question(models.Model):
         #db_table = 'questions'
         ordering = ['-added_at']
 
+    def get_url(self):
+        return reverse('draw_question', kwargs={'id': self.id})
+
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField(blank=True)
@@ -30,6 +33,9 @@ class Answer(models.Model):
     #def get_absolute_url(self):
         #return '/post/%d/' % self.pk
     
+    def __unicode__(self):
+        return self.text
+
     class Meta:
         #db_table = 'answers'
         ordering = ['-added_at']
