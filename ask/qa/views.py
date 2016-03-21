@@ -35,7 +35,7 @@ def draw_popular(request):
         'page' : page 
         })
 
-def draw_question(request, qid):
+def draw_question(request, id):
     try:
         question = Question.objects.get(id = id)
     except Question.DoesNotExist:
