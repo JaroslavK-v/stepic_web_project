@@ -35,9 +35,9 @@ def draw_popular(request):
         'page' : page 
         })
 
-def draw_question(request, id):
+def draw_question(request, q_id):
     try:
-        question = Question.objects.get(id = id)
+        question = Question.objects.get(id = q_id)
     except Question.DoesNotExist:
         raise Http404
     return render(request, 'ask/question.html', {
