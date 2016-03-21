@@ -8,7 +8,7 @@ def test(request, *args, **kwargs):
     return HttpResponse('OK')
 
 
-def draw_new(request):
+'''def draw_new(request):
     questions = Question.objects.all()
     limit = request.GET.get('limit', 10)
     page = request.GET.get('page', 1)
@@ -34,7 +34,7 @@ def draw_popular(request):
         'paginator' : paginator,
         'page' : page 
         })
-
+'''
 def draw_question(request, q_id):
     try:
         question = Question.objects.get(id = q_id)
