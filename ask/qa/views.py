@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 from django.http import HttpResponse, Http404
+from .models import Question, Answer
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
