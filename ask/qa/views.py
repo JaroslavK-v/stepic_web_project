@@ -23,7 +23,7 @@ def test(request, *args, **kwargs):
 
 
 def draw_popular(request):
-    questions = Question.objects.order_by(rating)
+    questions = Question.objects.order_by('-rating')
     limit = request.GET.get('limit', 10)
     page = request.GET.get('page', 1)
     paginator = Paginator(questions, limit)
@@ -40,7 +40,7 @@ def draw_question(request, q_id):
         question = Question.objects.get(id = q_id)
     except Question.DoesNotExist:
         raise Http404
-    return render(request, 'ask/question.html', {
+    return render(request, 'qa/question.html', {
         'question' : question,
         'title' : question.title,
         'text' : question.text,
