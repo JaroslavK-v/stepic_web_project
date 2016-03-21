@@ -13,7 +13,7 @@ def draw_new(request):
     limit = request.GET.get('limit', 10)
     page = request.GET.get('page', 1)
     paginator = Paginator(questions, limit)
-    #paginator.baseurl = 
+    paginator.baseurl = '/ask/new_questions/?page='
     page = paginator.page(page)
     return render(request, 'ask/new_questions.html', {
         'questions' : page.object_list,
@@ -27,7 +27,7 @@ def draw_popular(request):
     limit = request.GET.get('limit', 10)
     page = request.GET.get('page', 1)
     paginator = Paginator(questions, limit)
-    #paginator.baseurl = 
+    paginator.baseurl = '/ask/popular/?page='
     page = paginator.page(page)
     return render(request, 'ask/popular.html', {
         'questions' : page.object_list,
