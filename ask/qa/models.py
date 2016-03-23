@@ -23,7 +23,7 @@ class Question(models.Model):
         ordering = ['-added_at']
 
     def get_url(self):
-        return reverse('draw_question', kwargs={'id': self.id})
+        return reverse('question', kwargs={'id': self.id})
 
 class Answer(models.Model):
     text = models.TextField()
