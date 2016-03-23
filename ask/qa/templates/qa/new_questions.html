@@ -1,0 +1,21 @@
+<html>
+<head><title>QA</title></head>
+<body>
+<nav><ul class="pagination">
+{% for p in paginator.page_range %}
+{% if p == page.number %}
+<li>
+{% else %}
+<li>
+{% endif %}
+{% for q in questions %}
+<div>
+<p style="background: silver; border: 1px solid;"><a href = "http://localhost:8000/question/{{ q.id }}" >{{ q.title }}</a></p>
+{% endfor %}
+<a href="{{ paginator.baseurl }}{{ p }}">
+{{ p }}</a>
+</li>
+{% endfor %}
+</ul></nav>
+</body>
+</html>
