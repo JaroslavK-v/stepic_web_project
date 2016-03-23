@@ -5,18 +5,19 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse, Http404
 from .models import Question, Answer
 
+
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
 
 
-'''def draw_new(request):
-    questions = Question.objects.all()
+def draw_new(request):
+    questions = Question.objects.order_by('-added_at')
     limit = request.GET.get('limit', 10)
     page = request.GET.get('page', 1)
     paginator = Paginator(questions, limit)
-    paginator.baseurl = '/ask/new_questions/?page='
+    paginator.baseurl = '/new/?page='
     page = paginator.page(page)
-    return render(request, 'ask/new_questions.html', {
+    return render(request, 'qa/new_questions.html', {
         'questions' : page.object_list,
         'paginator' : paginator,
         'page' : page 
@@ -28,34 +29,26 @@ def draw_popular(request):
     limit = request.GET.get('limit', 10)
     page = request.GET.get('page', 1)
     paginator = Paginator(questions, limit)
-    paginator.baseurl = '/ask/popular/?page='
+    paginator.baseurl = '/popular/?page='
     page = paginator.page(page)
-    return render(request, 'ask/popular.html', {
+    return render(request, 'qa/popular.html', {
         'questions' : page.object_list,
         'paginator' : paginator,
         'page' : page 
         })
-'''
+
 def draw_question(request, q_id):
     try:
         question = Question.objects.get(id = q_id)
     except Question.DoesNotExist:
         raise Http404
+    #question = {'title' : "121", 'text' : "222", 'id': 44}
+    answer = Answer.objects.filter(question_exact = q_id)
+    #answer = {'text' : 'blablabla', 'question' : 3}
     return render(request, 'qa/question.html', {
         'question' : question,
         'title' : question.title,
         'text' : question.text,
-         
+        'answer' : answer,
+                 
         })
-
-'''def draw_answer(request):
-    try:
-        answer = Answer.objects.all
-    except Answer.DoesNotExist:
-        raise Http404
-    return render(request, 'ask/answer.html', {
-        'question' : question,
-        'text' : answer.text,
-         
-        })
-    '''
