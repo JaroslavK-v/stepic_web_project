@@ -1,9 +1,18 @@
 <html>
-<head>QA</head>
+<head><title>QA</title></head>
 <body>
-<h1>{{ question.title }}</h1>
-<p>{{ question.text }}</p>
-
+<div style="border: 2px solid; background-color: silver;">
+<h1>{{ title }}</h1>
+<hr>
+<p>{{ text }}</p>
+</div>
+<br>
+{% for a in answer %}
+<div style="border: 2px solid; background-color: lightsilver;">
+<p> {{ a.text }} 
+<hr>Added by {{ a.author }} : {{ a.added_at }}</p>
+</div><br>
+{% endfor %}
 
 </body>
 </html>
