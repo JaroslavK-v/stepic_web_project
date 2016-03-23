@@ -37,18 +37,18 @@ def draw_popular(request):
         'page' : page 
         })
 
-def draw_question(request, q_id):
-    try:
-        question = Question.objects.get(id = q_id)
-    except Question.DoesNotExist:
-        raise Http404
-    #question = {'title' : "121", 'text' : "222", 'id': 44}
-    answer = Answer.objects.filter(question_exact = q_id)
-    #answer = {'text' : 'blablabla', 'question' : 3}
-    return render(request, 'qa/question.html', {
-        'question' : question,
-        'title' : question.title,
-        'text' : question.text,
-        'answer' : answer,
-                 
-        })
+def draw_question(request, q_id):                                                             
+    try:                                                                                      
+        question = Question.objects.get(id = q_id)                                            
+    except Question.DoesNotExist:                                                             
+        raise Http404                                                                         
+    #question = {'title' : "121", 'text' : "222", 'id': 44}                                   
+    answer = Answer.objects.filter(question__exact = q_id)                                    
+    #answer = {'text' : 'blablabla', 'question' : 3}                                          
+    return render(request, 'qa/question.html', {                                              
+        'question' : question,                                                                
+        'title' : question.title,                                                             
+        'text' : question.text,                                                               
+        'answer' : answer,                                                                    
+                                                                                              
+        })         
